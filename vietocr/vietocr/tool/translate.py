@@ -132,6 +132,8 @@ def build_model(config):
     return model, vocab
 
 def resize(w, h, expected_height, image_min_width, image_max_width):
+    if h == 0:
+        return image_min_width, expected_height
     new_w = int(expected_height * float(w) / float(h))
     round_to = 10
     new_w = math.ceil(new_w/round_to)*round_to
